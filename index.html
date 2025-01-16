@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-<head><meta charset="UTF-8">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Omkar Narayan Bhal - Software Developer Portfolio | Full-stack development with Java, TypeScript, React.js, Node.js">
-    <meta name="keywords" content="software developer, full stack developer, Java, TypeScript, React.js, Node.js">
-    <title>Omkar Bhal - Software Developer Portfolio</title>
+    <title>Omkar-Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="./tailwind.config.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Ovo&display=swap" rel="stylesheet">
-    
     <style>
         @keyframes wave {
             0% { transform: rotate(0deg); }
@@ -22,201 +20,6 @@
             60% { transform: rotate(0deg); }
             100% { transform: rotate(0deg); }
         }
-
-@keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes slideIn {
-            from { transform: translateX(-100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        
-        /* New utility classes */
-        .animate-fadeIn {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-        
-        .animate-slideIn {
-            animation: slideIn 0.8s ease-out forwards;
-        }
-        
-        /* Enhanced card styles */
-        .project-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px) rotateY(5deg);
-            box-shadow: 20px 20px 60px rgba(0,0,0,0.1);
-        }
-        
-        /* Enhanced skill badge styles */
-        .skill-badge {
-            background: linear-gradient(135deg, rgba(107,91,149,0.1), rgba(254,178,54,0.1));
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .skill-badge:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            background: linear-gradient(135deg, rgba(107,91,149,0.2), rgba(254,178,54,0.2));
-        }
-        
-        /* Scroll progress indicator */
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #6b5b95, #feb236);
-            z-index: 1000;
-            transition: width 0.3s ease;
-        }
-
-        /* Enhanced dark mode styles */
-        .dark .project-card {
-            background: rgba(30,30,30,0.8);
-            backdrop-filter: blur(10px);
-        }
-        
-        .dark .skill-badge {
-            background: linear-gradient(135deg, rgba(107,91,149,0.2), rgba(254,178,54,0.2));
-        }
-        
-        /* Smooth scrolling behavior */
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        /* Loading animation */
-        .loader {
-            width: 48px;
-            height: 48px;
-            border: 5px solid #FFF;
-            border-bottom-color: transparent;
-            border-radius: 50%;
-            display: inline-block;
-            box-sizing: border-box;
-            animation: rotation 1s linear infinite;
-        }
-
-        @keyframes rotation {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Intersection Observer animations */
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Enhanced experience timeline */
-        .experience-timeline {
-            position: relative;
-        }
-        
-        .timeline-connector {
-            position: absolute;
-            left: -25px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, #6b5b95 0%, #feb236 100%);
-        }
-        
-        .timeline-dot {
-            position: absolute;
-            left: -29px;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #6b5b95;
-            border: 2px solid #fff;
-        }
-
-        /* New button styles */
-        .gradient-button {
-            background: linear-gradient(45deg, #6b5b95, #feb236);
-            color: white;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .gradient-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #feb236, #6b5b95);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .gradient-button:hover::before {
-            opacity: 1;
-        }
-        
-        /* New section transitions */
-        .section-transition {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .section-transition::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: linear-gradient(to bottom, transparent, white);
-            pointer-events: none;
-        }
-        
-        /* Enhanced project card hover effects */
-        .project-card-content {
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .project-card:hover .project-card-content {
-            transform: translateY(-5px);
-        }
-        
-        /* Responsive improvements */
-        @media (max-width: 768px) {
-            .timeline-connector {
-                left: -15px;
-            }
-            
-            .timeline-dot {
-                left: -19px;
-            }
-            
-            .project-card {
-                margin: 0 1rem;
-            }
-        }
-    
-    
-
-
-        
         .animate-wave {
             animation: wave 2.5s infinite;
             transform-origin: 70% 70%;
@@ -431,8 +234,6 @@
     </style>
 </head>
 <body class="overflow-x-hidden font-Outfit leading-8 dark:bg-darkTheme dark:text-white">
-    <!-- Add scroll progress indicator -->
-    <div class="scroll-progress" id="scrollProgress"></div>
 
     <div class="fixed top-0 right-0 w-11/12 -z-10 translate-y-[-80%] dark:hidden">
         <img src="./images/header-bg-color.png" alt="" class="w-full">
