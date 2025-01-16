@@ -37,30 +37,4 @@ if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.match
     }
   }
 
-window.onscroll = function() {
-        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        let scrolled = (winScroll / height) * 100;
-        document.getElementById("scrollProgress").style.width = scrolled + "%";
-    };
-    
-    // Intersection Observer for fade-in animations
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-            }
-        });
-    });
-    
-    document.querySelectorAll('.fade-in-section').forEach((el) => observer.observe(el));
-    
-    // Smooth scroll handling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
+ 
