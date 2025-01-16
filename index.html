@@ -61,180 +61,155 @@
             transform: rotateY(180deg);
         }
 
+        /* Experience Card Styles */
+        .experience-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(128, 128, 128, 0.15);
+            border-radius: 16px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
+        }
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                45deg,
+                rgba(107, 91, 149, 0.05),
+                rgba(254, 178, 54, 0.05)
+            );
+            z-index: -1;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+        .experience-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.1),
+                0 10px 20px rgba(107, 91, 149, 0.1);
+            border-color: rgba(107, 91, 149, 0.3);
+        }
+        .experience-card:hover::before {
+            opacity: 1;
+        }
+        .dark .experience-card {
+            background: rgba(30, 30, 30, 0.8);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        .dark .experience-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 10px 20px rgba(107, 91, 149, 0.2);
+        }
 
+        /* Timeline Styles */
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #6b5b95, #feb236);
+            box-shadow: 0 0 0 4px rgba(107, 91, 149, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .timeline-dot::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #6b5b95, #feb236);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .experience-card:hover + .timeline-dot::before {
+            opacity: 0.2;
+            animation: pulse 2s infinite;
+        }
+        .timeline-line {
+            width: 3px;
+            background: linear-gradient(to bottom, #6b5b95 0%, #feb236 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .timeline-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                rgba(254, 178, 54, 0.5),
+                transparent
+            );
+            animation: flow 2s infinite linear;
+            transform: translateY(-100%);
+        }
 
+        /* Animations */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.2;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.2;
+            }
+        }
+        @keyframes flow {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100%);
+            }
+        }
 
+        /* Responsive Adjustments */
+        @media (max-width: 640px) {
+            .experience-grid {
+                grid-template-columns: 1fr;
+            }
+            .experience-card {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            .timeline-dot {
+                width: 14px;
+                height: 14px;
+            }
+            .timeline-line {
+                width: 2px;
+            }
+        }
 
-/* Experience Card Styles */
-.experience-card {
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(128, 128, 128, 0.15);
-    border-radius: 16px;
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    position: relative;
-    z-index: 1;
-}
-
-.experience-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        45deg,
-        rgba(107, 91, 149, 0.05),
-        rgba(254, 178, 54, 0.05)
-    );
-    z-index: -1;
-    transition: opacity 0.3s ease;
-    opacity: 0;
-}
-
-.experience-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.1),
-        0 10px 20px rgba(107, 91, 149, 0.1);
-    border-color: rgba(107, 91, 149, 0.3);
-}
-
-.experience-card:hover::before {
-    opacity: 1;
-}
-
-/* Dark mode adjustments */
-.dark .experience-card {
-    background: rgba(30, 30, 30, 0.8);
-    border-color: rgba(255, 255, 255, 0.1);
-}
-
-.dark .experience-card:hover {
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.3),
-        0 10px 20px rgba(107, 91, 149, 0.2);
-}
-
-/* Timeline Styles */
-.timeline-dot {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: linear-gradient(45deg, #6b5b95, #feb236);
-    box-shadow: 0 0 0 4px rgba(107, 91, 149, 0.1);
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-.timeline-dot::before {
-    content: '';
-    position: absolute;
-    inset: -4px;
-    border-radius: 50%;
-    background: linear-gradient(45deg, #6b5b95, #feb236);
-    opacity: 0;
-    transition: all 0.3s ease;
-}
-
-.experience-card:hover + .timeline-dot::before {
-    opacity: 0.2;
-    animation: pulse 2s infinite;
-}
-
-.timeline-line {
-    width: 3px;
-    background: linear-gradient(to bottom, #6b5b95 0%, #feb236 100%);
-    position: relative;
-    overflow: hidden;
-}
-
-.timeline-line::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    background: linear-gradient(
-        to bottom,
-        transparent,
-        rgba(254, 178, 54, 0.5),
-        transparent
-    );
-    animation: flow 2s infinite linear;
-    transform: translateY(-100%);
-}
-
-/* Animations */
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-        opacity: 0.2;
-    }
-    50% {
-        transform: scale(1.5);
-        opacity: 0.1;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 0.2;
-    }
-}
-
-@keyframes flow {
-    0% {
-        transform: translateY(-100%);
-    }
-    100% {
-        transform: translateY(100%);
-    }
-}
-
-/* Responsive Adjustments */
-@media (max-width: 640px) {
-    .experience-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .experience-card {
-        margin-left: 1rem;
-        margin-right: 1rem;
-    }
-    
-    .timeline-dot {
-        width: 14px;
-        height: 14px;
-    }
-    
-    .timeline-line {
-        width: 2px;
-    }
-}
-
-/* Hover Effects for Text Elements */
-.experience-card h3,
-.experience-card h4 {
-    transition: all 0.3s ease;
-}
-
-.experience-card:hover h3 {
-    color: #6b5b95;
-    transform: translateX(4px);
-}
-
-.experience-card:hover h4 {
-    color: #feb236;
-    transform: translateX(4px);
-}
-
-
-
-        
+        /* Hover Effects for Text Elements */
+        .experience-card h3,
+        .experience-card h4 {
+            transition: all 0.3s ease;
+        }
+        .experience-card:hover h3 {
+            color: #6b5b95;
+            transform: translateX(4px);
+        }
+        .experience-card:hover h4 {
+            color: #feb236;
+            transform: translateX(4px);
+        }
     </style>
 </head>
 <body class="overflow-x-hidden font-Outfit leading-8 dark:bg-darkTheme dark:text-white">
-
     <div class="fixed top-0 right-0 w-11/12 -z-10 translate-y-[-80%] dark:hidden">
         <img src="./images/header-bg-color.png" alt="" class="w-full">
     </div>
@@ -251,7 +226,7 @@
         <div class="flex items-center gap-4">
             <button onclick="toggleTheme()">
                 <img src="./images/moon_icon.png" alt="" class="w-6 dark:block">
-          <img src="./images/sun_icon.png" alt="" class="w-6 hidden dark:block"> 
+                <img src="./images/sun_icon.png" alt="" class="w-6 hidden dark:block">
             </button>
             <a href="https://topmate.io/omkarbhal" class="hidden lg:flex items-center gap-3 px-10 py-2.5 border border-gray-500 rounded-full ml-4 font-Ovo dark:border-white/50">
                 Contact <img src="./images/arrow-icon.png" alt="" class="w-3 dark:hidden">
@@ -281,88 +256,66 @@
             <img src="./images/hand-icon.png" alt="" class="w-7 animate-wave">
         </h3>
         <h1 class="text-3xl sm:text-6xl lg:text-[66px] font-Ovo">Software Developer based in India.</h1>
-        <p class="max-w-2xl mx-auto font-Ovo">As i am a software developer, I bring a strong commitment to crafting efficient and scalable software applications.</p>
+        <p class="max-w-2xl mx-auto font-Ovo">As a software developer, I bring a strong commitment to crafting efficient and scalable software applications.</p>
         <div class="flex flex-col sm:flex-row items-center gap-4 mt-4">
             <a href="https://topmate.io/omkarbhal" class="px-10 py-3 border rounded-full btn-gradient flex items-center gap-2 dark:border-transparent">Contact me <img src="./images/right-arrow-white.png" alt="" class="w-4"></a>
             <a href="https://drive.google.com/file/d/1bETgsTjJBR2rSwR4OfFCaLF3hJyRZyrP/view?usp=sharing" target="_blank" download class="px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 bg-white dark:text-black">My Resume <img src="./images/download-icon.png" alt="" class="w-4"></a>
         </div>
     </div>
 
-<!-- ------------ about me -----------  -->
- <div id="about" class="w-full px-[12%] py-10 scroll-mt-20">
-    <!-- <h4 class="text-center mb-2 text-lg font-Ovo">Introduction</h4> -->
-    <h2 class="text-center text-5xl font-Ovo">About me</h2>
-
-    <div class="flex w-full flex-col lg:flex-row items-center gap-20 my-20">
-        <div class="max-w-max mx-auto relative">
-            <img src="./images/user-image.png" alt="" class="w-64 sm:w-80 rounded-3xl max-w-none">
-
-            <div class="bg-white w-1/2 aspect-square absolute right-0 bottom-0 rounded-full translate-x-1/4 translate-y-1/3 shadow-[0_4px_55px_rgba(149,0,162,0.15)] flex items-center justify-center">
-                <img src="./images/circular-text.png" alt="" class="w-full animate-spin_slow">
-                <!-- <img src="./images/dev-icon.png" alt="" class="w-1/4 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"> -->
+    <!-- About Me Section -->
+    <div id="about" class="w-full px-[12%] py-10 scroll-mt-20">
+        <h2 class="text-center text-5xl font-Ovo">About me</h2>
+        <div class="flex w-full flex-col lg:flex-row items-center gap-20 my-20">
+            <div class="max-w-max mx-auto relative">
+                <img src="./images/user-image.png" alt="" class="w-64 sm:w-80 rounded-3xl max-w-none">
+                <div class="bg-white w-1/2 aspect-square absolute right-0 bottom-0 rounded-full translate-x-1/4 translate-y-1/3 shadow-[0_4px_55px_rgba(149,0,162,0.15)] flex items-center justify-center">
+                    <img src="./images/circular-text.png" alt="" class="w-full animate-spin_slow">
+                </div>
+            </div>
+            <div class="flex-1">
+                <p class="mb-10 max-w-2xl font-Ovo">I am Omkar Narayan Bhal&#128075;, a software developer with expertise in Java, JavaScript, TypeScript, React.js, Node.js, Express.js, Docker, and AWS. With a B.Tech in Computer Science and Engineering, I have hands-on experience in web development and project management. Passionate about creating innovative solutions and continuously learning new technologies.</p>
+                <ul class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl">
+                    <li class="border-[0.5px] border-gray-400 rounded-xl p-6 cursor-pointer hover:bg-lightHover hover:-translate-y-1 duration-500 hover:shadow-black dark:border-white dark:hover:shadow-white dark:hover:bg-darkHover/50">
+                        <img src="./images/code-icon.png" alt="" class="w-7 mt-3 dark:hidden">
+                        <img src="./images/code-icon-dark.png" alt="" class="w-7 mt-3 hidden dark:block">
+                        <h3 class="my-4 font-semibold text-gray-700 dark:text-white">Languages</h3>
+                        <p class="text-gray-600 text-sm dark:text-white/80">Java, TypeScript, JavaScript, HTML5, CSS3</p>
+                    </li>
+                    <li class="border-[0.5px] border-gray-400 rounded-xl p-6 cursor-pointer hover:bg-lightHover hover:-translate-y-1 duration-500 hover:shadow-black dark:border-white dark:hover:shadow-white dark:hover:bg-darkHover/50">
+                        <img src="./images/edu-icon.png" alt="" class="w-7 mt-3 dark:hidden">
+                        <img src="./images/edu-icon-dark.png" alt="" class="w-7 mt-3 hidden dark:block">
+                        <h3 class="my-4 font-semibold text-gray-700 dark:text-white">Education</h3>
+                        <p class="text-gray-600 text-sm dark:text-white/80">B.Tech in Computer Science</p>
+                    </li>
+                    <li class="border-[0.5px] border-gray-400 rounded-xl p-6 cursor-pointer hover:bg-lightHover hover:-translate-y-1 duration-500 hover:shadow-black dark:border-white dark:hover:shadow-white dark:hover:bg-darkHover/50">
+                        <img src="./images/project-icon.png" alt="" class="w-7 mt-3 dark:hidden">
+                        <img src="./images/project-icon-dark.png" alt="" class="w-7 mt-3 hidden dark:block">
+                        <h3 class="my-4 font-semibold text-gray-700 dark:text-white">Projects</h3>
+                        <p class="text-gray-600 text-sm dark:text-white/80">Built more than 6 full-stack projects</p>
+                    </li>
+                </ul>
+                <h4 class="my-6 text-gray-700 font-Ovo dark:text-white/80">Tools I like most &#128071;</h4>
+                <ul class="flex items-center gap-3 sm:gap-5">
+                    <li class="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
+                        <img src="./images/git.png" alt="" class="w-5 sm:w-7">
+                    </li>
+                    <li class="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
+                        <img src="./images/chatgpt.png" alt="" class="w-5 sm:w-7">
+                    </li>
+                    <li class="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
+                        <img src="./images/react.png" alt="" class="w-5 sm:w-7">
+                    </li>
+                    <li class="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
+                        <img src="./images/node.png" alt="" class="w-5 sm:w-7">
+                    </li>
+                    <li class="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
+                        <img src="./images/mongodb.png" alt="" class="w-5 sm:w-7">
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="flex-1">
-            <p class="mb-10 max-w-2xl font-Ovo">I am Omkar Narayan Bhal&#128075;, A software developer with expertise in Java, JavaScript, TypeScript, React.js, Node.js, Express.js, Doker and AWS. With a B.Tech in Computer Science and Engineering, I have hands-on experience in web development and project management. Passionate about creating innovative solutions and continuously learning new technologies.</p>
-
-            <ul class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl">
-                <li class="border-[0.5px] border-gray-400 rounded-xl p-6 cursor-pointer hover:bg-lightHover hover:-translate-y-1 duration-500 hover:shadow-black
-                dark:border-white dark:hover:shadow-white dark:hover:bg-darkHover/50
-                ">
-                    <img src="./images/code-icon.png" alt="" class="w-7 mt-3 dark:hidden">
-                    <img src="./images/code-icon-dark.png" alt="" class="w-7 mt-3 hidden dark:block">
-
-                    <h3 class="my-4 font-semibold text-gray-700 dark:text-white">Languages</h3>
-                    <p class="text-gray-600 text-sm dark:text-white/80">Java, TypeScript, JavaScript, HTML5, CSS3</p>
-                </li>
-                <li class="border-[0.5px] border-gray-400 rounded-xl p-6 cursor-pointer hover:bg-lightHover hover:-translate-y-1 duration-500 hover:shadow-black dark:border-white dark:hover:shadow-white dark:hover:bg-darkHover/50">
-
-                    <img src="./images/edu-icon.png" alt="" class="w-7 mt-3 dark:hidden">
-                    <img src="./images/edu-icon-dark.png" alt="" class="w-7 mt-3 hidden dark:block">
-
-                    <h3 class="my-4 font-semibold text-gray-700 dark:text-white">Education</h3>
-                    <p class="text-gray-600 text-sm dark:text-white/80">B.Tech in Computer Science </p>
-                </li>
-                <li class="border-[0.5px] border-gray-400 rounded-xl p-6 cursor-pointer hover:bg-lightHover hover:-translate-y-1 duration-500 hover:shadow-black dark:border-white dark:hover:shadow-white dark:hover:bg-darkHover/50">
-
-                    <img src="./images/project-icon.png" alt="" class="w-7 mt-3 dark:hidden">
-                    <img src="./images/project-icon-dark.png" alt="" class="w-7 mt-3 hidden dark:block">
-                    <h3 class="my-4 font-semibold text-gray-700 dark:text-white">Projects</h3>
-                    <p class="text-gray-600 text-sm dark:text-white/80">Built more than 6 full-stack projects </p>
-                </li>
-            </ul>
-            <h4 class="my-6 text-gray-700 font-Ovo dark:text-white/80">Tools i like most &#128071;</h4>
-
-            <ul class="flex items-center gap-3 sm:gap-5">
-                <!-- <li class="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
-                    <img src="./images/figma.png" alt="" class="w-5 sm:w-7">
-                </li> -->
-                <li class="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
-                    <img src="./images/git.png" alt="" class="w-5 sm:w-7">
-                </li>
-                <li class="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
-                    <img src="./images/chatgpt.png" alt="" class="w-5 sm:w-7">
-                </li>
-                <li class="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
-                    <img src="./images/react.png" alt="" class="w-5 sm:w-7">
-                </li>
-                <!-- <li class="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
-                    <img src="./images/vscode.png" alt="" class="w-5 sm:w-7">
-                </li> -->
-                <li class="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
-                    <img src="./images/node.png" alt="" class="w-5 sm:w-7">
-                </li>
-                <li class="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
-                    <img src="./images/mongodb.png" alt="" class="w-5 sm:w-7">
-                </li>
-                <!-- <li class="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
-                    <img src="./images/git.png" alt="" class="w-5 sm:w-7"> -->
-                </li>
-            </ul>
-        </div>
     </div>
- </div>
-
 
 
 
